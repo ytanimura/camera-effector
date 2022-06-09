@@ -94,8 +94,7 @@ vec4 laplacianFilter(in vec2 U) {
             + getColor(U + e.xz - e.zy)
             + getColor(U + e.xz)
             + getColor(U + e.xz + e.zy);
-    float c = smoothstep(0.0, 1.0, luminance(col.xyz));
-    return vec4(vec3(1.0 - c), 1);
+    return 1.0 - abs(col);
 }
 
 vec4 pointillism(in vec2 U) {
