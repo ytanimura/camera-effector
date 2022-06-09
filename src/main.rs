@@ -183,7 +183,7 @@ fn main() {
         let idx_buf =
             IndexBuffer::new(&gl_display, PrimitiveType::TriangleStrip, &[1_u16, 2, 0, 3]).unwrap();
 
-        let fragment = "#version 300 es\nprecision highp float;uniform sampler2D iChannel0;uniform float iTime;uniform vec3 iResolution;\
+        let fragment = "#version 300 es\nprecision highp float;uniform sampler2D iChannel0;uniform float iTime;uniform vec3 iResolution;uniform mat3 iChannelResolution;\
 out vec4 _color_;void mainImage(out vec4, in vec2);void main() {mainImage(_color_,gl_FragCoord.xy);}".to_string() + include_str!("shader.frag");
 
         let program = program!(&gl_display,
@@ -212,7 +212,12 @@ out vec4 _color_;void mainImage(out vec4, in vec2);void main() {mainImage(_color
                     let uniforms = uniform! {
                         iTime: instant.elapsed().as_secs_f32(),
                         iResolution: [res.0 as f32, res.1 as f32, 1.0],
-                        iChannel0: &gl_texture
+                        iChannel0: &gl_texture,
+                        iChannelResolution: [
+                            [setting.resolution.0 as f32, setting.resolution.1 as f32, 1.0],
+                            [0.0, 0.0, 1.0],
+                            [0.0, 0.0, 1.0],
+                        ],
                     };
 
                     let mut target = gl_display.draw();
