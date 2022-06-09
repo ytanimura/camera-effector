@@ -1,0 +1,10 @@
+{
+  "resolution": [
+    640,
+    480
+  ],
+  "format": "MJPEG",
+  "frame_rate": 30,
+  "backend": "AUTO",
+  "index": 0
+}
