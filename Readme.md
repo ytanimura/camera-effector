@@ -1,6 +1,6 @@
 # Camera Effector
 
-**This is a project for myself and is not intended for your use.**
+**This project is for myself and not intended for your use.**
 
 ## What is this?
 
